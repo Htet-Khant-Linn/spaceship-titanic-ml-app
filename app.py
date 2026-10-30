@@ -1,0 +1,1 @@
+# Streamlit interface for entering passenger details and displaying predictions.
