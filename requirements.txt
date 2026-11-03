@@ -1,1 +1,8 @@
 # This includes Python packages needed to run the app.
+
+streamlit
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn

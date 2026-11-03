@@ -1,1 +1,21 @@
-# Test
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Data & Machine Learning Artifacts
+state/
+*.h5
+*.onnx
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
