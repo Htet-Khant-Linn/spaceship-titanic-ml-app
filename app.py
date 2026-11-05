@@ -9,7 +9,7 @@ df = pd.read_csv('data/train.csv')
 df[['Deck', 'Cabin_num', 'Side']] = df['Cabin'].str.split('/', expand=True)
 
 def load_model():
-    with open('spaceship-titanic-model.pkl', 'rb') as f:
+    with open('spaceship-titanic-model-v2.pkl', 'rb') as f:
         return pickle.load(f)
 
 st.header("Spaceship Titanic Transport Prediction App")
@@ -22,8 +22,8 @@ with st.sidebar:
     st.text("Student ID: PIUS20230064")
     st.text("Course: CS 300 - Introduction to Machine Learning")
     st.text("Spaceship Titanic Transport Prediction App")
-    st.text("Model: Tuned Gradient Boosting")
-    st.text("Test Accuracy: 80.24%")
+    st.text("Model: Tuned KNN Classifier")
+    st.text("Test Accuracy: 78.61%")
 
 col1, col2 = st.columns(2)
 
