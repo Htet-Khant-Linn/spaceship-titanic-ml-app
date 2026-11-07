@@ -9,21 +9,23 @@ df = pd.read_csv('data/train.csv')
 df[['Deck', 'Cabin_num', 'Side']] = df['Cabin'].str.split('/', expand=True)
 
 def load_model():
-    with open('spaceship-titanic-model-v2.pkl', 'rb') as f:
+    with open('spaceship-titanic-model-v3.pkl', 'rb') as f:
         return pickle.load(f)
 
+st.image("spaceship_banner.png")
 st.header("Spaceship Titanic Transport Prediction App")
 st.write("Enter passenger details and luxury amenity spending to predict whether they were transported to an alternate dimension.")
 
 with st.sidebar:
     st.image("parami.jpg")
     st.subheader("Student Information")
-    st.text("Student Name: Htet Khant Linn")
+    st.markdown("Student Name: [Htet Khant Linn](https://htet-khant-linn.github.io/my-portfolio/)")
     st.text("Student ID: PIUS20230064")
     st.text("Course: CS 300 - Introduction to Machine Learning")
     st.text("Spaceship Titanic Transport Prediction App")
     st.text("Model: Tuned KNN Classifier")
     st.text("Test Accuracy: 78.61%")
+    st.markdown("[View Project on GitHub](https://github.com/Htet-Khant-Linn/spaceship-titanic-ml-app)")
 
 col1, col2 = st.columns(2)
 
@@ -43,23 +45,30 @@ with col2:
     room_service = st.slider("Enter your RoomService spend",
                             min_value=float(df['RoomService'].min()),
                             max_value=float(df['RoomService'].max()),
-                            value=0.0, step=50.0)
+                            value=0.0, step=50.0,
+                            disabled=cryo_sleep)
     food_court = st.slider("Enter your FoodCourt spend",
                             min_value=float(df['FoodCourt'].min()),
                             max_value=float(df['FoodCourt'].max()),
-                            value=0.0, step=50.0)
+                            value=0.0, step=50.0,
+                            disabled=cryo_sleep)
     shopping_mall = st.slider("Enter your ShoppingMall spend",
                             min_value=float(df['ShoppingMall'].min()),
                             max_value=float(df['ShoppingMall'].max()),
-                            value=0.0, step=50.0)
+                            value=0.0, step=50.0,
+                            disabled=cryo_sleep)
     spa = st.slider("Enter your Spa spend",
                     min_value=float(df['Spa'].min()),
                     max_value=float(df['Spa'].max()),
-                    value=0.0, step=50.0)
+                    value=0.0, step=50.0,
+                    disabled=cryo_sleep)
     vr_deck = st.slider("Enter your VRDeck spend",
                         min_value=float(df['VRDeck'].min()),
                         max_value=float(df['VRDeck'].max()),
-                        value=0.0, step=50.0)
+                        value=0.0, step=50.0,
+                        disabled=cryo_sleep)
+
+
 
 # set if conditon for cryo_sleep passenger
 if cryo_sleep == True:
@@ -106,3 +115,28 @@ if predict_button:
         st.success("Prediction: Transported (True) - Passenger was transported to an alternate dimension!")
     else:
         st.warning("Prediction: Not Transported (False) — Passenger remained safely onboard!")
+
+
+st.subheader("About the Dataset")
+
+st.markdown("""
+It’s the year 2912. The Spaceship Titanic was carrying nearly 13,000
+passengers to three distant planets when it encountered a spacetime
+anomaly near Alpha Centauri. The ship remained intact, but nearly half
+of its passengers were transported to another dimension.
+
+This project uses recovered passenger records to predict who was
+transported. The target column, `Transported`, records the known outcome
+for each passenger in the training dataset.
+""")
+
+st.subheader("Explore the Original Training Dataset")
+
+original_df = df.drop(columns=["Deck", "Cabin_num", "Side"])
+
+st.caption(
+    f"{len(original_df):,} passenger records - {original_df.shape[1]} columns. "
+    "Scroll to explore the data or click a column header to sort."
+)
+
+st.dataframe(original_df, hide_index=True, height=450)
