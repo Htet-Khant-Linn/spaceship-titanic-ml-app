@@ -1,5 +1,5 @@
 # Spaceship Titanic Prediction
-[image](spaceship_banner.png)
+![image](spaceship_banner.png)
 
 A CS 300 Introduction to Machine Learning midterm project by Htet Khant Linn. The project uses Kaggle’s Spaceship Titanic dataset to predict whether a passenger was transported to another dimension after the ship encountered a spacetime anomaly.
 
